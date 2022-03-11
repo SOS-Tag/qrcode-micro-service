@@ -89,6 +89,7 @@ app.get("/pdf/:id", (req, res) => {
 		const QRCanvas = drawQR();
 
 		const QRCodeUrl = "https://www.sostag.tech/" + QRCodeId;
+		const shortUrl = "sostag.tech/" + QRCodeId;
 		console.log(QRCodeUrl);
 
 		QRCode.toDataURL(QRCodeUrl, QRCodeOptions, function (err, url) {
@@ -99,6 +100,7 @@ app.get("/pdf/:id", (req, res) => {
 			});
 			pdfService(
 				url,
+				shortUrl,
 				(chunk) => stream.write(chunk),
 				() => stream.end()
 			);
