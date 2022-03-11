@@ -1,6 +1,9 @@
 import { customAlphabet } from "nanoid";
 import express from "express";
 import QRCode from "qrcode";
+import PDFDocument from "pdfkit";
+
+import pdfService from "./service/pdf-service.js";
 
 import Canvas from "canvas";
 
@@ -76,6 +79,7 @@ app.get("/:id", (req, res) => {
 });
 
 app.get("/pdf/:id", (req, res) => {
+	const QRCodeId = req.params.id;
 	if (!regex.test(QRCodeId)) {
 		res
 			.status(500)
@@ -84,14 +88,21 @@ app.get("/pdf/:id", (req, res) => {
 		res.setHeader("Content-Type", "image/png");
 		const QRCanvas = drawQR();
 
-		const url = "https://www.sostag.tech/" + QRCodeId;
-		console.log(url);
+		const QRCodeUrl = "https://www.sostag.tech/" + QRCodeId;
+		console.log(QRCodeUrl);
 
-		QRCode.toCanvas(QRCanvas, url, QRCodeOptions, function (err, url) {});
-
-		QRCanvas.pngStream().pipe(res);
-
-		res.status(200);
+		QRCode.toDataURL(QRCodeUrl, QRCodeOptions, function (err, url) {
+			if (err) throw err;
+			const stream = res.writeHead(200, {
+				"Content-Type": "application/pdf",
+				"Content-Disposition": `attachment;filename=invoice.pdf`,
+			});
+			pdfService(
+				url,
+				(chunk) => stream.write(chunk),
+				() => stream.end()
+			);
+		});
 	}
 });
 
