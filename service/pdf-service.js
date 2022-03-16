@@ -8,21 +8,21 @@ function buildPDF(qrcode, shortUrl, dataCallback, endCallback) {
 
 	doc.on("data", dataCallback);
 	doc.on("end", endCallback);
-	doc
-		.image(
-			qrcode,
-			doc.page.width / 2 - imageSize / 2,
-			doc.page.height / 2 - imageSize / 2,
-			{ fit: [imageSize, imageSize], align: "center", valign: "center" }
-		)
-		.rect(0, 0, imageSize, imageSize)
-		.stroke();
+	doc.image(
+		qrcode,
+		doc.page.width / 2 - imageSize / 2,
+		doc.page.height / 2 - imageSize / 2,
+		{ fit: [imageSize, imageSize], align: "center", valign: "center" }
+	);
 
-	doc.fontSize(35);
+	doc.image("LogoSOSTag.png", 0, 0);
+
+	doc.fontSize(35).fillColor("#0B1F50");
+	doc.font("Helvetica");
 	doc.text(
 		shortUrl,
 		doc.page.width / 2 - textWidth / 2,
-		doc.page.height - 100,
+		doc.page.height - 150,
 		{
 			width: textWidth,
 			lineBreak: false,
