@@ -15,7 +15,7 @@ function buildPDF(qrcode, shortUrl, dataCallback, endCallback) {
 		{ fit: [imageSize, imageSize], align: "center", valign: "center" }
 	);
 
-	doc.image("LogoSOSTag.png", 0, 0);
+	//doc.image("LogoSOSTag.png", 0, 0);
 
 	doc.fontSize(35).fillColor("#0B1F50");
 	doc.font("Helvetica");
