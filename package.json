@@ -6,12 +6,13 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "canvas": "^2.9.0",
+    "cors": "^2.8.5",
     "express": "^4.17.2",
     "nanoid": "^3.1.30",
     "pdfkit": "^0.13.0",

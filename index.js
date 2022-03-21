@@ -2,6 +2,8 @@ import { customAlphabet } from "nanoid";
 import express from "express";
 import QRCode from "qrcode";
 import PDFDocument from "pdfkit";
+import cors from 'cors';
+
 
 import pdfService from "./service/pdf-service.js";
 
@@ -11,6 +13,8 @@ const nanoid = customAlphabet("ABCDEFGHJKLMNPQRSTUVWXYZ234578", 8);
 const regex = new RegExp("((?![0169IO])[A-Z0-9]){8}");
 
 const app = express();
+
+app.use(cors())
 
 const res = {};
 
