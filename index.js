@@ -100,7 +100,7 @@ app.get("/pdf/:id", (req, res) => {
 			if (err) throw err;
 			const stream = res.writeHead(200, {
 				"Content-Type": "application/pdf",
-				"Content-Disposition": `attachment;filename=invoice.pdf`,
+				"Content-Disposition": `attachment;filename=QRCode_`+QRCodeId+`".pdf`,
 			});
 			pdfService(
 				url,
