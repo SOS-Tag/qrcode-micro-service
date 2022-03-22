@@ -71,7 +71,7 @@ app.get("/:id", (req, res) => {
 		res.setHeader("Content-Type", "image/png");
 		const QRCanvas = drawQR();
 
-		const url = "https://www.sostag.tech/" + QRCodeId;
+		const url = "https://www.api.sostag.tech/" + QRCodeId;
 		console.log(url);
 
 		QRCode.toCanvas(QRCanvas, url, QRCodeOptions, function (err, url) {});
@@ -92,8 +92,8 @@ app.get("/pdf/:id", (req, res) => {
 		res.setHeader("Content-Type", "image/png");
 		const QRCanvas = drawQR();
 
-		const QRCodeUrl = "https://www.sostag.tech/" + QRCodeId;
-		const shortUrl = "sostag.tech/" + QRCodeId;
+		const QRCodeUrl = "https://www.api.sostag.tech/" + QRCodeId;
+		const shortUrl = "api.sostag.tech/" + QRCodeId;
 		console.log(QRCodeUrl);
 
 		QRCode.toDataURL(QRCodeUrl, QRCodeOptions, function (err, url) {
